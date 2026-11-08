@@ -1,0 +1,17 @@
+.mc-system-dock{position:absolute;top:10px;left:8px;z-index:7;max-width:calc(100% - 130px);font-family:'Poppins',sans-serif}
+.mc-system-primary{display:flex;gap:5px;flex-wrap:wrap;max-width:290px}
+.mc-system-primary button{display:grid;justify-items:center;gap:2px;padding:0 3px 5px;border:1px solid #35e2f044;background:#04101bcc;color:#c9e6f2;cursor:pointer;min-width:46px}
+.mc-system-primary img{height:38px;width:38px;object-fit:contain;animation:mc-system-glow 4s ease-in-out infinite}
+.mc-system-primary button:nth-child(2) img{animation-delay:.6s}.mc-system-primary button:nth-child(3) img{animation-delay:1.2s}
+.mc-system-primary span{font:5px 'Press Start 2P',monospace}
+.mc-system-menu{position:absolute;top:64px;left:0;width:min(330px,calc(100vw - 28px));max-height:calc(100dvh - 230px);overflow:auto;background:#04101bf5;border:1px solid #35e2f0;box-shadow:0 12px 35px #000;padding:12px;backdrop-filter:blur(10px)}
+.mc-system-menu h3{font:6px 'Press Start 2P',monospace;color:#7fabbf;margin:18px 0 10px;line-height:1.7}
+.mc-system-menu section>div{display:flex;flex-wrap:wrap;gap:7px}
+.mc-system-menu section button{display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #295c70;background:#0a1b2a;color:#d3e9f3;font-size:11px;cursor:pointer}
+.mc-system-menu img{height:24px;width:24px;object-fit:contain}
+.mc-system-close{display:block;margin-left:auto;color:#ffd68a;border:0;background:none;font:6px 'Press Start 2P',monospace;padding:7px;cursor:pointer}
+.mc-system-menu p{font-size:10px;color:#91aebd;margin-bottom:0}
+.mc-system-primary button:hover{filter:brightness(1.35)}
+@keyframes mc-system-glow{50%{filter:brightness(1.2) drop-shadow(0 0 6px #35e2f066)}}
+@media(prefers-reduced-motion:reduce){.mc-system-primary img{animation:none}}.mc-system-primary .mc-system-story span{color:#ffd27a}
+.mc-system-primary .mc-system-story img{filter:drop-shadow(0 0 5px #ffb21a88)}

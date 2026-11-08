@@ -1,0 +1,53 @@
+/* Comando de batalha por ESFERAS: categoria → opções com fade → segurar 2s. */
+.mc-commands{position:relative;color:#e8f4ff;padding:10px 14px 10px;border-image:url('/ui/panel_large.png') 30 fill/18px/0 stretch;font-family:'Silkscreen',monospace}
+.mc-command-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;font:8px/1.6 'Press Start 2P',monospace;letter-spacing:.04em}
+.mc-command-heading small{font:8px 'Silkscreen',monospace;color:#ffd584;text-align:right}
+.mc-orb-tray{display:flex;justify-content:center;align-items:flex-start;gap:14px;min-height:118px;padding:6px 4px 4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;background:radial-gradient(ellipse at 50% 100%,#1a3b5a66,transparent 70%)}
+.mc-orb-hint{align-self:center;margin:0;font:8px 'Silkscreen',monospace;color:#7fa3b9;letter-spacing:1px;animation:mc-hint 1.6s ease-in-out infinite alternate}
+@keyframes mc-hint{from{opacity:.45}to{opacity:1}}
+.mc-opt{position:relative;flex:0 0 auto;width:86px;display:grid;justify-items:center;gap:3px;opacity:0;animation:mc-opt-in .26s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(var(--i,0) * 55ms)}
+.mc-orb-tray.is-leaving .mc-opt{animation:mc-opt-out .18s ease-in forwards}
+@keyframes mc-opt-in{from{opacity:0;transform:translateY(14px) scale(.55)}to{opacity:1;transform:none}}
+@keyframes mc-opt-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(8px) scale(.7)}}
+.mc-opt-orb{position:relative;width:68px;height:68px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:transform .15s}
+.mc-opt-orb>img{position:absolute;inset:4px;width:60px;height:60px;border-radius:50%;box-shadow:0 5px 0 #020813,0 8px 14px #0009;pointer-events:none}
+.mc-opt-orb:hover>img{filter:brightness(1.12)}
+.mc-opt-orb:focus-visible{outline:2px solid #fff1bc;outline-offset:3px}
+.mc-hold-ring{position:absolute;inset:-3px;width:74px;height:74px;transform:rotate(-90deg);pointer-events:none;overflow:visible}
+.mc-hold-ring circle{fill:none;stroke:var(--tone);stroke-width:6;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;opacity:0}
+.mc-opt.is-holding .mc-opt-orb{transform:scale(1.1)}
+.mc-opt.is-holding .mc-hold-ring circle{opacity:1;animation:mc-hold 2s linear forwards}
+.mc-opt.is-holding .mc-opt-orb>img{box-shadow:0 0 0 3px #020813,0 0 18px var(--tone)}
+@keyframes mc-hold{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.mc-opt.is-blocked .mc-opt-orb{cursor:not-allowed}.mc-opt.is-blocked .mc-opt-orb>img,.mc-opt.is-blocked .mc-glyph{filter:grayscale(.85) brightness(.55)}
+.mc-glyph{position:absolute;inset:4px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 35% 30%,#7fd8ff,#1b5c8f 45%,#081a2e 80%);box-shadow:inset 0 0 0 4px #c9d6e2,inset 0 0 0 6px #52606e,0 5px 0 #020813,0 8px 14px #0009;pointer-events:none}
+.mc-glyph img{width:70%;height:70%;object-fit:contain;image-rendering:pixelated}
+.mc-opt-info{position:absolute;top:-4px;right:2px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;z-index:2;transition:transform .12s}
+.mc-opt-info img{width:24px;height:24px;margin:2px;border-radius:50%;box-shadow:0 2px 0 #020813}
+.mc-opt-info:hover{transform:scale(1.12)}.mc-opt-info:focus-visible{outline:2px solid #fff1bc;border-radius:50%}
+.mc-opt-label{max-width:86px;font:7px/1.4 'Press Start 2P',monospace;text-align:center;color:#eef8ff;text-shadow:1px 1px #000;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mc-opt-sub{font-size:7px;color:#a9cddd;text-align:center;line-height:1.3;max-width:86px;min-height:9px}
+.mc-opt.is-holding .mc-opt-sub{color:var(--tone)}
+.mc-opt.is-compact{width:100%;grid-template-columns:auto 1fr;justify-items:start;align-items:center;column-gap:10px;margin-bottom:4px;animation:none;opacity:1}
+.mc-opt.is-compact .mc-opt-orb{grid-row:span 2;width:48px;height:48px}.mc-opt.is-compact .mc-opt-orb>img{width:42px;height:42px;inset:3px}.mc-opt.is-compact .mc-hold-ring{width:54px;height:54px}
+.mc-opt.is-compact .mc-opt-info{top:0;left:30px;right:auto;width:24px;height:24px}.mc-opt.is-compact .mc-opt-info img{width:20px;height:20px}
+.mc-opt.is-compact .mc-opt-label,.mc-opt.is-compact .mc-opt-sub{max-width:none;text-align:left}
+.mc-orb-root{display:flex;justify-content:center;gap:10px;padding-top:8px;margin-top:2px;background:url('/ui/deco_divider.png') top center/80% 2px no-repeat}
+.mc-cat{position:relative;display:grid;justify-items:center;gap:4px;padding:0;border:0;background:none;color:#bdd3e4;cursor:pointer;min-width:58px;transition:transform .18s}
+.mc-cat-orb{position:relative;width:54px;height:54px;border-radius:50%;display:block;transition:transform .18s,box-shadow .18s}
+.mc-cat-orb img{width:100%;height:100%;border-radius:50%;box-shadow:0 4px 0 #020813,0 6px 10px #0008;pointer-events:none}
+.mc-cat-label{font:6px/1.3 'Press Start 2P',monospace;letter-spacing:.02em;white-space:nowrap}
+.mc-cat:hover .mc-cat-orb{transform:translateY(-2px)}
+.mc-cat.is-open .mc-cat-orb{transform:translateY(-5px) scale(1.08);box-shadow:0 0 0 3px #fff1bc,0 0 16px #ffe39a88}
+.mc-cat.is-open .mc-cat-label{color:#ffe39a}
+.mc-cat:focus-visible{outline:2px solid #fff1bc;outline-offset:3px;border-radius:8px}
+.mc-cat[data-testid="cat-ultimate"] .mc-cat-orb::before{content:"";position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#ffd46c var(--charge,0%),#0b1626 0);z-index:-1}
+.mc-cat.is-ready .mc-cat-orb{animation:mc-ready 1.2s ease-in-out infinite alternate}
+@keyframes mc-ready{from{box-shadow:0 0 0 2px #ffd46c,0 0 6px #ffd46c66}to{box-shadow:0 0 0 2px #fff5c9,0 0 20px #ffd46ccc}}
+.mc-skill-dossier{position:absolute;inset:0;z-index:8;background:#071321f7;border-image:url('/ui/panel_large.png') 30/18px/0 stretch;box-shadow:0 0 30px #000;padding:16px 22px;overflow:auto;outline:none;animation:mc-opt-in .2s ease-out}
+.mc-skill-dossier h3{font:10px/1.8 'Press Start 2P',monospace;color:#ffe39a;margin:18px 0 10px}.mc-skill-dossier p{font-size:11px;line-height:1.6;margin:0 0 6px}.mc-skill-dossier small{color:#8aafc2;font-size:9px}.mc-close{float:right;background:none;border:0;color:#a3eaff;font:9px 'Silkscreen',monospace;cursor:pointer;min-height:32px}
+.mc-arena-ultimate{position:absolute;inset:0;z-index:4;pointer-events:none}.mc-ultimate-actor{position:absolute;bottom:0;filter:drop-shadow(0 0 10px #ffbd3844)}.mc-ultimate-projectile{position:absolute;mix-blend-mode:screen;filter:drop-shadow(0 0 8px #8cd7ff55)}
+.mc-ultimate-callout{position:absolute;bottom:calc(100% - 12px);transform:translateX(-50%);text-align:center;width:min(280px,46vw);padding:10px;background:#03101bd9;border-image:url('/ui/panel_strip.png') 24/10px/0 stretch;display:grid;gap:6px}.mc-ultimate-callout span{font:7px 'Silkscreen',monospace;color:#35e2f0;letter-spacing:1px}.mc-ultimate-callout strong{font:9px/1.6 'Press Start 2P',monospace;color:#ffe29a;overflow-wrap:anywhere}
+@media(max-width:620px){.mc-commands{padding:8px 8px}.mc-command-heading{font-size:6px}.mc-command-heading small{font-size:6px}.mc-orb-tray{gap:6px;min-height:104px;justify-content:flex-start}.mc-orb-tray>.mc-orb-hint{margin:auto}.mc-opt{width:72px}.mc-opt-orb{width:58px;height:58px}.mc-opt-orb>img{width:50px;height:50px}.mc-hold-ring{width:64px;height:64px}.mc-opt-info{right:-2px}.mc-opt-label{font-size:6px;max-width:72px}.mc-opt-sub{font-size:6px;max-width:72px}.mc-orb-root{gap:4px}.mc-cat{min-width:0;flex:1 1 0}.mc-cat-orb{width:44px;height:44px}.mc-cat-label{font-size:5px}}
+@media(max-height:600px) and (min-width:621px){.mc-orb-tray{min-height:100px}.mc-opt-orb{width:56px;height:56px}.mc-opt-orb>img{width:48px;height:48px}.mc-hold-ring{width:62px;height:62px}.mc-cat-orb{width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){.mc-opt,.mc-orb-tray.is-leaving .mc-opt{animation-duration:.01s;animation-delay:0s}.mc-cat.is-ready .mc-cat-orb,.mc-orb-hint{animation:none}.mc-ultimate-projectile,.mc-ultimate-actor{filter:none}}

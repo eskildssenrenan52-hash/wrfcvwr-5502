@@ -1,0 +1,64 @@
+/* Panteão Mítico — todas as folhas são 5×5 = 25 frames a 25 fps (1 s por ciclo). */
+.pt-sheet{display:inline-block;flex-shrink:0;background-size:500% 500%;background-repeat:no-repeat;image-rendering:pixelated;animation:pt-x .2s steps(5) infinite,pt-y 1s steps(5) infinite}
+@keyframes pt-x{from{background-position-x:0%}to{background-position-x:125%}}
+@keyframes pt-y{from{background-position-y:0%}to{background-position-y:125%}}
+.pt-off{filter:grayscale(1) brightness(.45);animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.pt-sheet,.pt-bg{animation-duration:4s,20s}}
+
+.pt-root{position:absolute;inset:0;display:flex;flex-direction:column;color:#f2e9ff;font-family:'Silkscreen',monospace;overflow:hidden;background:#07020f}
+.pt-bg{position:absolute;inset:0;background:url(/mythic/sanctum.webp) 0 0/500% 500% no-repeat;image-rendering:pixelated;animation:pt-x .2s steps(5) infinite,pt-y 1s steps(5) infinite;opacity:.9}
+.pt-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#07020fcc 0,#07020f33 22%,#07020f55 60%,#07020fee 100%)}
+.pt-top,.pt-gates,.pt-body{position:relative;z-index:1}
+.pt-top{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px solid #ff5cd655;background:#0b0418d9}
+.pt-back{font-size:7px;color:#ffd6f4;background:#1b0b2c;border:2px solid #ff5cd688;padding:8px 9px;cursor:pointer}
+.pt-title{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.pt-title h1{font-size:10px;margin:0;color:#ffd86a;text-shadow:2px 2px 0 #4a0f3b}
+.pt-title small{font-size:6px;color:#d9a6ff;letter-spacing:1px}
+.pt-wallet{display:flex;align-items:center;gap:5px;font-size:9px;color:#9ff3ff;background:#0a1626;border:2px solid #3fb7d688;padding:4px 8px}
+
+.pt-gates{display:flex;gap:6px;padding:8px 12px}
+.pt-gates button{flex:1;display:grid;gap:3px;padding:7px 4px;text-align:center;cursor:pointer;color:var(--pt-c);background:#0c0617cc;border:2px solid #3b2552;transition:transform .12s}
+.pt-gates button span{font-size:9px}.pt-gates button small{font-size:5px;color:#b9a7cf}.pt-gates button em{font-style:normal;font-size:6px;color:#fff}
+.pt-gates button[aria-pressed=true]{border-color:var(--pt-c);background:#1a0c2bdd;box-shadow:0 0 0 2px #000,inset 0 -3px 0 var(--pt-c);transform:translateY(-2px)}
+
+.pt-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:10px;padding:0 12px 12px}
+@media (max-width:640px){.pt-body{grid-template-columns:1fr;overflow:auto}}
+.pt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-content:start;overflow:auto}
+.pt-card{display:grid;justify-items:center;gap:3px;padding:6px 3px;background:#0c0617d9;border:2px solid #2d1d40;cursor:pointer;color:#e6d8ff;animation:pt-rise .5s steps(10) both}
+.pt-card img{image-rendering:pixelated;filter:brightness(.55) saturate(.6)}
+.pt-card[data-owned=true] img{filter:none}
+.pt-card span{font-size:6px;text-align:center}.pt-card i{font-style:normal;font-size:6px;color:var(--pt-c)}
+.pt-card[aria-pressed=true]{border-color:var(--pt-c);background:#1b0d2ee6;box-shadow:inset 0 0 0 2px #000}
+.pt-card[aria-pressed=true] img{filter:none}
+@keyframes pt-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.pt-detail{display:flex;flex-direction:column;gap:6px;min-height:0;overflow:auto;background:#0a0514e6;border:2px solid var(--pt-c);box-shadow:4px 4px 0 #000;padding:8px}
+.pt-stage{position:relative;height:170px;display:grid;place-items:center;flex-shrink:0}
+.pt-aura{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%)}
+.pt-robot{position:relative;z-index:1;margin-bottom:24px}
+.pt-summon{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;animation-iteration-count:2;pointer-events:none}
+.pt-info h2{font-size:11px;margin:0;color:var(--pt-c)}
+.pt-info>small{font-size:6px;color:#c6a7ef;letter-spacing:1px}
+.pt-info p{font-size:9px;line-height:1.7;color:#d6c9ea;margin:6px 0}
+.pt-info h3{font-size:7px;color:#ffd86a;margin:10px 0 5px}
+.pt-trials{display:flex;gap:5px;margin-bottom:7px}
+.pt-trials span{flex:1;text-align:center;font:6px 'Press Start 2P',monospace;padding:6px 0;border:2px solid #3b2552;color:#7b6a92;background:#0e0718}
+.pt-trials span[data-next=true]{border-color:var(--pt-c);color:#fff;animation:pt-blink 1s steps(2) infinite}
+.pt-trials span[data-done=true]{background:var(--pt-c);color:#120720;border-color:#000}
+@keyframes pt-blink{50%{background:#2a1540}}
+.pt-missions{list-style:none;padding:0;margin:0;display:grid;gap:4px}
+.pt-missions li{display:flex;align-items:center;gap:6px;font-size:8px;padding:4px;background:#120a1f;border-left:3px solid #3b2552}
+.pt-missions li[data-done=true]{border-color:#7dffb0}
+.pt-missions li span{flex:1}.pt-missions li b{font-size:7px;color:#ffd86a}
+.pt-offer{display:flex;align-items:center;gap:6px;margin:10px 0 6px;font-size:7px;color:#d9a6ff}
+.pt-offer b{font-size:10px;color:#9ff3ff}.pt-offer b[data-short=true]{color:#ff6a7a}
+.pt-awaken{width:100%;padding:12px;font-size:9px;cursor:pointer;color:#1a0420;background:linear-gradient(90deg,#ff5cd6,#ffd86a,#ff5cd6);background-size:200% 100%;border:3px solid #000;box-shadow:3px 3px 0 #000;animation:pt-shine 1s steps(25) infinite}
+.pt-awaken:disabled{background:#1a1024;color:#7b6a92;border-color:#3b2552;cursor:not-allowed;animation:none}
+@keyframes pt-shine{to{background-position:200% 0}}
+.pt-note{margin-top:6px;font-size:7px;color:#7dffb0;text-align:center}
+
+/* botão único do Panteão no hub */
+.mc-pantheon-trigger{position:absolute;right:12px;top:140px;z-index:25;display:flex;align-items:center;gap:6px;background:#12061ee8;border:2px solid #ff5cd6;color:#ffd86a;padding:5px 9px 5px 5px;font:6px/1.6 'Press Start 2P',monospace;cursor:pointer;box-shadow:3px 3px 0 #000}
+.mc-pantheon-trigger:disabled{border-color:#4b3a5c;color:#7b6a92;cursor:not-allowed}
+.mc-pantheon-trigger:disabled .pt-sheet{filter:grayscale(1);animation-play-state:paused}
+@media(max-height:620px){.mc-pantheon-trigger{top:112px}}
